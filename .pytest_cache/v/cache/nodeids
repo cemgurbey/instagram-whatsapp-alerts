@@ -1,8 +1,0 @@
-[
-  "tests/test_core.py::test_describe_message",
-  "tests/test_core.py::test_parse_events_ignores_non_instagram",
-  "tests/test_core.py::test_parse_events_skips_echoes",
-  "tests/test_core.py::test_quiet_hours_wraps_midnight",
-  "tests/test_core.py::test_store_dedupe_exclusions_queue",
-  "tests/test_core.py::test_verify_signature"
-]
