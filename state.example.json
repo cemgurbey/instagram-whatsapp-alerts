@@ -1,0 +1,1 @@
+{"account_id":"<instagram account id>","excluded_threads":["<thread id of a muted group chat>"],"own_fbid":"<same id — used to ignore your own messages>","threads":{"<group thread id>":{"last_msg_id":"mid.example2","last_ts":"1793670196285","title":"Book Club"},"<thread id>":{"last_msg_id":"mid.example","last_ts":"1793729412371","title":"Jane Doe"}}}
