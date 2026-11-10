@@ -13,6 +13,14 @@ this repo holds the watcher's instruction spec and a reference implementation
 of its deterministic core (poll → diff → format) so the design is portable
 and auditable.
 
+**Deployable version included:** `app/` is a standalone FastAPI service that
+does the same job with public APIs — Instagram Messaging API webhooks in
+(no polling, alerts in seconds), WhatsApp Cloud API template messages out,
+SQLite for dedupe/exclusions/the quiet-hours queue, Docker to run it
+anywhere. Start with [SETUP.md](SETUP.md): the code is ready, but the Meta
+app, the Instagram professional account, and the WhatsApp template approval
+are steps only the account owner can do.
+
 ## How it works
 
 1. **Poll** — read the 30 most recent inbox threads with a small message
@@ -64,6 +72,15 @@ morning run as a single batch instead of pinging at 3 AM.
   Delivery itself is one call in the agent runtime, so the script stops at
   composing the alert.
 - `state.example.json` — the state file schema with placeholder data.
+- `app/` — the deployable service (see above): `main.py` (webhook +
+  quiet-hours flush loop), `instagram.py` (signature check, payload
+  parsing, username lookup), `whatsapp.py` (Cloud API template sender),
+  `store.py` (SQLite: dedupe, exclusions, queue), `filters.py` (quiet
+  hours, message rendering), `exclusions.py` (CLI for the mute mirror).
+- `SETUP.md` — end-to-end setup: Meta app, Instagram messaging access,
+  WhatsApp number + template, hosting.
+- `tests/` — unit tests for parsing, rendering, rules, and the store
+  (`pip install -r requirements-dev.txt && pytest`).
 
 ## State file
 
